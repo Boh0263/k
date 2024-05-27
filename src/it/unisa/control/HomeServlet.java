@@ -50,8 +50,13 @@ public class HomeServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		if (redirectedPage.contains("/")) {
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ErrorPage.jsp");
+			dispatcher.forward(request, response);
+		} else {
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/" + redirectedPage);
 		dispatcher.forward(request, response);
+		}
 	}
 
 
